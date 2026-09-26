@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#073b7a">
+<title>George CleanBox | Cleaning Products</title>
+<style>
+:root{--navy:#073b7a;--blue:#087bd8;--green:#27a844;--lime:#d9f51a;--bg:#f5f9fd;--ink:#10284a}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 2px 12px #0001}
+nav{max-width:1100px;margin:auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.brand img{height:58px;width:auto;display:block}.brand{display:flex;align-items:center}.package-logo{display:block;width:min(320px,72%);height:auto;margin:4px auto 12px}.combo-image{width:100%;height:150px;object-fit:contain;background:#fff;border-radius:14px;margin:8px 0 10px;display:block}.card h3{font-size:22px;margin:0}.price{font-size:30px;font-weight:900;color:var(--navy);margin:8px 0}nav a{margin-left:15px;font-weight:700}
+.hero,section{max-width:1100px;margin:auto;padding:18px 16px}
+.hero img{width:100%;border-radius:22px;display:block;box-shadow:0 10px 28px #073b7a22}
+h1{font-size:clamp(34px,7vw,58px);line-height:1;margin:28px 0 10px}
+h1 span{color:var(--green)}.lead{font-size:18px;color:#5b6b80}
+h2{text-align:center;font-size:30px;margin:15px 0 5px}.sub{text-align:center;color:#64748b;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 8px 24px #073b7a18;display:flex;flex-direction:column}
+.card h3{font-size:22px;margin:0}.price{font-size:30px;font-weight:900;color:var(--navy);margin:8px 0}
+.card ul{padding-left:18px;flex:1;color:#4b5d73;font-size:14px}.card li{margin:5px 0}
+button{border:0;border-radius:12px;padding:13px;background:var(--navy);color:#fff;font-weight:900;cursor:pointer}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0}.info div{background:#fff;padding:20px;border-radius:18px;text-align:center;box-shadow:0 8px 24px #073b7a12}
+footer{background:var(--navy);color:#fff;text-align:center;padding:28px 16px;margin-top:20px}
+.cart{position:fixed;right:16px;bottom:16px;z-index:10;background:var(--green);color:#fff;border-radius:50px;padding:14px 18px;box-shadow:0 8px 24px #0003}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.info{grid-template-columns:1fr}nav a{display:none}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding-top:10px}.combo-image{height:180px}.brand img{height:48px}}
+</style>
+</head>
+<body>
+<header><nav><div class="brand"><img src="assets/logo.png" alt="George CleanBox logo"></div><div><a href="#combos">Combos</a><a href="#about">Why Us</a></div></nav></header>
+
+<main>
+<div class="hero">
+<img src="george-cleanbox-promo.png" alt="George CleanBox cleaning combo packages">
+<h1>Clean Products.<br><span>Better Living.</span></h1>
+<p class="lead">Quality cleaning combo packages for homes, guesthouses, offices, small businesses and car-care customers in George.</p>
+</div>
+
+<section id="combos">
+<img class="package-logo" src="assets/logo.png" alt="George CleanBox logo">
+<h2>Cleaning Combo Packages</h2>
+<p class="sub">Choose a ready-made package and add it to your order.</p>
+<div class="grid" id="products"></div>
+</section>
+
+<section id="about">
+<h2>Why George CleanBox?</h2>
+<p class="sub">Simple packages. Trusted products. Convenient local service.</p>
+<div class="info">
+<div><div style="font-size:30px">🚚</div><b>George Delivery</b><br><small>Convenient local delivery options.</small></div>
+<div><div style="font-size:30px">✓</div><b>Quality Products</b><br><small>Combo packages built around Sparkle products.</small></div>
+<div><div style="font-size:30px">🏠</div><b>For Every Space</b><br><small>Home, hospitality, office, business and car care.</small></div>
+</div>
+</section>
+</main>
+
+<button class="cart" onclick="showOrder()">🛒 Order <span id="count">0</span></button>
+
+<footer>
+<b>George CleanBox</b><br>Clean Spaces · Healthy Living · Greater Value<br>
+George, Western Cape<br><small>Prices and availability should be confirmed before payment.</small>
+</footer>
+
+<script>
+const products=[
+["Home Basic",329,["Dishwashing Liquid 750 ml","Pine Disinfectant 750 ml","Thick Bleach 750 ml","Antibacterial Bathroom Cleaner 750 ml","Window Clean 750 ml","Room Fresh 500 ml"]],
+["Home Plus",599,["Dishwashing Liquid 2 L","Pine Disinfectant 2 L","Thick Bleach 5 L","Antibacterial Bathroom Cleaner 750 ml","Stride Floor Cleaner 2 L","Window Clean 750 ml","Room Fresh 500 ml"]],
+["Deep Clean",999,["Dishwashing Liquid 5 L","Pine Disinfectant 5 L","Thick Bleach 5 L","Antibacterial Bathroom Cleaner 5 L","Stride Floor Cleaner 5 L","Liquid Hand Soap 5 L","Window Clean 5 L","Toilet Fresh Spray 300 ml"]],
+["Guesthouse / Airbnb",1099,["Dishwashing Liquid 5 L","Pine Disinfectant 5 L","Thick Bleach 5 L","Antibacterial Bathroom Cleaner 5 L","Stride Floor Cleaner 5 L","Liquid Hand Soap 5 L","Window Clean 5 L","Toilet Fresh Spray 300 ml","Room Fresh 500 ml"]],
+["Office / Small Business",999,["Dishwashing Liquid 5 L","Pine Disinfectant 5 L","Thick Bleach 5 L","Antibacterial Bathroom Cleaner 5 L","Stride Floor Cleaner 5 L","Liquid Hand Soap 5 L","Window Clean 5 L","Room Fresh 500 ml"]],
+["Car Wash Package",1099,["Motex Car Shampoo 5 L","Motex Wash & Wax 5 L","Motex Tyre Brite 5 L","Motex Dashboard Shine 500 ml","Motex Car Fresh Spray 300 ml"]]
+];
+const comboImages=["combo1.png","combo2.png","combo3.png","combo4.png","combo5.png","combo6.png"];
+let cart=[];
+const money=n=>"R"+n.toLocaleString("en-ZA");
+document.getElementById("products").innerHTML=products.map((p,i)=>`
+<article class="card"><h3>${p[0]}</h3><img class="combo-image" src="assets/${comboImages[i]}" alt="${p[0]} cleaning combo products"><div class="price">${money(p[1])}</div>
+<ul>${p[2].map(x=>`<li>${x}</li>`).join("")}</ul>
+<button onclick="add(${i})">Add to Order</button></article>`).join("");
+function add(i){cart.push(i);document.getElementById("count").textContent=cart.length;alert(products[i][0]+" added to your order.");}
+function showOrder(){
+ if(!cart.length){alert("Your order is empty. Choose a combo first.");return}
+ const counts={};cart.forEach(i=>counts[i]=(counts[i]||0)+1);
+ let msg="George CleanBox order:%0A";
+ let total=0;
+ Object.entries(counts).forEach(([i,q])=>{msg+=q+" x "+products[i][0]+" - "+money(products[i][1]*q)+"%0A";total+=products[i][1]*q});
+ msg+="Total: "+money(total);
+ alert(msg.replaceAll("%0A","\n")+"\n\nTo activate direct WhatsApp checkout, replace the placeholder number in this website with your business WhatsApp number.");
+}
+</script>
+</body>
+</html>
